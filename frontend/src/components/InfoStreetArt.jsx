@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import MapStreetArt from "./MapStreetArt";
 
 export default function InfoStreetArt() {
+  const nav = useNavigate();
   const { token } = useAuth();
   const [streetArt, setStreetArt] = useState([]);
   const { id } = useParams();
@@ -50,14 +51,15 @@ export default function InfoStreetArt() {
               </Link>
             </p>
           )}
-          <p>Géolocalisation :</p>
+          {/* <p>Géolocalisation :</p> */}
         </figcaption>
         <section className="map-container">
           <MapStreetArt className="map-street-art" />
         </section>
       </figure>
+      <button type="button" className="retoure" onClick={() => nav("/gallery")}>
+        retoure a la gallery
+      </button>
     </div>
   );
 }
-
-/*  */

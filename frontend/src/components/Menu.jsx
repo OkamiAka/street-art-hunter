@@ -17,10 +17,7 @@ import { GiCharacter } from "react-icons/gi";
 import { useAuth } from "../contexts/AuthContext";
 
 export default function Menu() {
-  const [
-    menuIndex,
-    //  setMuneIndex
-  ] = useState(0);
+  const [menuIndex, setMuneIndex] = useState(0);
   const { role } = useAuth();
   const sizeIconMenu = "4rem";
   const menu = [
@@ -42,7 +39,11 @@ export default function Menu() {
           image: <FiMap size={sizeIconMenu} />,
           path: "/map-global",
         },
-        { name: "artistes", image: <GiCharacter size={sizeIconMenu} /> },
+        {
+          name: "artistes",
+          image: <GiCharacter size={sizeIconMenu} />,
+          path: "/artistes",
+        },
         {
           name: "Score",
           image: <MdScoreboard size={sizeIconMenu} />,
@@ -53,7 +54,11 @@ export default function Menu() {
           image: <FcContacts size={sizeIconMenu} />,
           path: "/friends",
         },
-        { name: "Mon Profil", image: <CgProfile size={sizeIconMenu} /> },
+        {
+          name: "Mon Profil",
+          image: <CgProfile size={sizeIconMenu} />,
+          path: "/profil",
+        },
         {
           name: "Paramètres",
           image: <RiListSettingsLine size={sizeIconMenu} />,
@@ -83,23 +88,20 @@ export default function Menu() {
   return (
     <div className="menu">
       <header>
-        {menu.map(
-          (
-            list
-            //  index
-          ) => (
-            <h1
-              key={list.titre}
-              // onClick={() => setMuneIndex(index)}
-            >
-              {list.titre}
-            </h1>
-          )
-        )}
+        {menu.map((list, index) => (
+          <button
+            key={list.titre}
+            type="button"
+            className="noneButton"
+            onClick={() => setMuneIndex(index)}
+          >
+            <h1>{list.titre}</h1>
+          </button>
+        ))}
       </header>
       <section>
         {menu[menuIndex].listMenu.map((list) => (
-          <Link to={list.path}>
+          <Link key={list.name} to={list.path}>
             {list.image}
             <figcaption>{list.name}</figcaption>
           </Link>

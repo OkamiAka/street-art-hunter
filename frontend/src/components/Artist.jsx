@@ -19,7 +19,7 @@ export default function Artist() {
     <div className="artistCards">
       <article>
         <header>
-          <h2>{artist?.name}</h2>
+          <h1>{artist?.name}</h1>
         </header>
         {artist?.picture && (
           <img

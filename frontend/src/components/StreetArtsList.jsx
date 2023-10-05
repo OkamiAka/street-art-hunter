@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function StreetArtList() {
+  const nav = useNavigate();
   const [streetArts, setStreetArts] = useState([]);
   useEffect(() => {
     fetch(
@@ -16,12 +17,12 @@ export default function StreetArtList() {
   }, []);
 
   return (
-    <>
-      <Link to="/street-arts-pending">
-        Allez aux street arts en attente de validation
-      </Link>
-
-      <div className="gallery">
+    <div className="gallery">
+      {/* <Link to="/street-arts-pending">
+        ⇨Allez aux street arts en attente de validation⇦
+      </Link> */}
+      <h1>street-arts list</h1>
+      <section>
         {streetArts.map((streetArt) => (
           <Link
             key={streetArt.id}
@@ -34,16 +35,19 @@ export default function StreetArtList() {
               />
 
               <figcaption>
-                {streetArt.name && <p>{streetArt.name}</p>}
+                <p>{streetArt.name}</p>
 
-                {streetArt.artistName && <p>{streetArt.artistName}</p>}
+                <p>{streetArt.artistName}</p>
 
                 <p>{streetArt.score} points</p>
               </figcaption>
             </figure>
           </Link>
         ))}
-      </div>
-    </>
+      </section>
+      <button type="button" className="retoure" onClick={() => nav("/menu")}>
+        retoure a la menu
+      </button>
+    </div>
   );
 }

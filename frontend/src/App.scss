@@ -4,7 +4,7 @@ body {
   background-color: #d1d6cd;
   background-image: url(./assets/bgmur.png);
   background-image: url(./assets/mur.png);
-  background-size: contain;
+  // background-size: contain;
   // font-family: Shojumaru;
   // font-size: small;
 }
@@ -23,7 +23,15 @@ p {
 button {
   -webkit-tap-highlight-color: transparent;
 }
-
+.noneButton {
+  border: none;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  font-size: initial;
+  width: initial;
+  color: initial;
+}
 .posTitle {
   color: white;
 }
@@ -63,10 +71,12 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    img {
-      width: 5rem;
+    button {
       position: absolute;
       bottom: 0rem;
+      img {
+        width: 5rem;
+      }
     }
   }
   .video-container:first-child {
@@ -100,7 +110,40 @@ button {
     overflow: hidden;
   }
 }
-
+.enCours {
+  text-align: center;
+  img {
+    width: 90%;
+  }
+  p {
+    color: #fff;
+    background-image: url(/src/assets/graf.png);
+    background-size: 100% 100%;
+    width: 70%;
+    padding: 2rem;
+    margin: auto;
+  }
+}
+.show-art {
+  text-align: center;
+  figure {
+    img {
+      height: 15rem;
+    }
+    figcaption {
+      background-image: url(/src/assets/bgh1.png);
+      background-size: 100% 160%;
+      background-position: center;
+      color: #fff;
+      p {
+        margin: 0.5rem;
+        a {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
 .home {
   text-align: center;
   img {
@@ -175,14 +218,14 @@ h1 {
   padding: 1rem;
 }
 button.retoure {
-  position: absolute;
+  position: fixed;
   bottom: 0rem;
   left: 0rem;
   margin: 0;
   width: 50%;
 }
 button.deconnexion {
-  position: absolute;
+  position: fixed;
   bottom: 0rem;
   right: 0rem;
   margin: 0;
@@ -753,7 +796,22 @@ button.deconnexion {
     font-size: large;
     color: black;
   }
-  .gallery {
+
+  button {
+    background-color: transparent;
+    border: none;
+    background-size: cover;
+    img {
+      height: 2rem;
+      position: absolute;
+      right: 3rem;
+      bottom: 2rem;
+    }
+  }
+}
+.gallery {
+  text-align: center;
+  section {
     display: grid;
     grid-template-columns: 1fr 1fr;
     figure {
@@ -771,17 +829,6 @@ button.deconnexion {
           color: white;
         }
       }
-    }
-  }
-  button {
-    background-color: transparent;
-    border: none;
-    background-size: cover;
-    img {
-      height: 2rem;
-      position: absolute;
-      right: 3rem;
-      bottom: 2rem;
     }
   }
 }
@@ -818,22 +865,8 @@ button.deconnexion {
   justify-content: space-around;
   align-items: center;
   padding: 1em;
-  .default-button {
-    background-color: transparent;
-    border-radius: 1em;
-    border-color: #13c7fe;
-    padding: 1em;
-    font-size: medium;
-    font-family: "retropix";
-    color: #fff;
-  }
   .selected-button {
-    border-radius: 1em;
-    padding: 1em;
-    font-size: medium;
-    font-family: "retropix";
-    color: black;
-    border: 1px solid white;
+    background-color: #300963;
   }
 }
 
@@ -876,9 +909,9 @@ button.deconnexion {
 
 .container-list {
   color: #fff;
-  background-image: url(./assets/mur.png);
-  background-size: contain;
-  background-position: bottom;
+  // background-image: url(./assets/mur.png);
+  // background-size: contain;
+  // background-position: bottom;
   // height: 100vh;
   position: fixed;
   top: 0rem;
@@ -976,13 +1009,9 @@ button.deconnexion {
 .map-container {
   display: flex;
   align-items: center;
-}
-
-.description-street-art {
-  display: flex;
-  flex-direction: column;
-  p {
-    margin: 2em;
+  button {
+    margin: 0;
+    padding: 0;
   }
 }
 .img-info-street-art {
@@ -1048,11 +1077,16 @@ button.deconnexion {
 }
 
 .artistCards {
+  text-align: center;
   img {
     width: auto;
     height: 13rem;
   }
   .artistCardContent {
+    background-image: url(/src/assets/bgh1.png);
+    background-size: 160% 160%;
+    background-position: center;
+    color: #fff;
     padding: 1em;
   }
 }

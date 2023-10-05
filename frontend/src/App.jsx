@@ -1,6 +1,5 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./components/Home";
-import GameBoyColor from "./components/GameBoyColor";
 import Menu from "./components/Menu";
 import Camera from "./components/Camera";
 import GameBoyScreen from "./components/GameBoyScreen";
@@ -17,72 +16,46 @@ import InfoAdminStreetArt from "./components/InfoAdminStreetArt";
 import MapGlobal from "./components/MapGlobal";
 import PendingStreetArtList from "./components/PendingStreetArtsList";
 import Setting from "./components/Setting";
+import EnCoursDeTravaux from "./components/EnCoursDeTravaux";
+import Autre from "./components/Autre";
 
 function App() {
+  const nav = useNavigate();
   const { token, role } = useAuth();
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route
-          path="/connection"
-          element={
-            <GameBoyScreen returnLink="/">
-              <Connection />
-            </GameBoyScreen>
-          }
-        />
+        <Route path="/connection" element={<Connection />} />
         {token != null && (
           <>
-            <Route path="/gameboycolor" element={<GameBoyColor />} />
             <Route path="/menu" element={<Menu />} />
-            <Route path="/camera" element={<Camera />} />
 
-            <Route path="/map-global" element={<MapGlobal />} />
-            <Route path="setting" element={<Setting />} />
+            <Route path="/camera" element={<Camera />} />
             <Route path="/gallery" element={<Gallery />} />
+            <Route path="/map-global" element={<MapGlobal />} />
+            <Route path="/artistes" element={<EnCoursDeTravaux />} />
+            <Route path="/profil" element={<EnCoursDeTravaux />} />
+            <Route path="setting" element={<Setting />} />
             <Route
               path="/gallery/:id/:longitude/:latitude"
-              element={
-                <GameBoyScreen returnLink="/gallery">
-                  <InfoStreetArt />
-                </GameBoyScreen>
-              }
+              element={<InfoStreetArt />}
             />
             <Route
               path="/gallery/artists/:id"
               element={
-                <GameBoyScreen returnLink="/gallery">
+                <>
                   <Artist />
-                </GameBoyScreen>
+                  <button
+                    type="button"
+                    className="retoure"
+                    onClick={() => nav("/gallery")}
+                  >
+                    retoure a la gallery
+                  </button>
+                </>
               }
             />
-
-            <Route
-              path="/street-arts"
-              element={
-                <GameBoyScreen>
-                  <StreetArtsList />
-                </GameBoyScreen>
-              }
-            />
-            <Route
-              path="/street-arts/:id/:longitude/:latitude"
-              element={
-                <GameBoyScreen returnLink="/street-arts">
-                  <InfoAdminStreetArt />
-                </GameBoyScreen>
-              }
-            />
-            <Route
-              path="/street-arts/artists/:id"
-              element={
-                <GameBoyScreen returnLink="/street-arts">
-                  <Artist />
-                </GameBoyScreen>
-              }
-            />
-
             <Route path="/score" element={<Score />} />
             <Route
               path="/artists/:id"
@@ -96,27 +69,35 @@ function App() {
 
             {role === 1 && (
               <>
-                <Route
-                  path="/street-arts"
-                  element={
-                    <GameBoyScreen>
-                      <StreetArtsList />
-                    </GameBoyScreen>
-                  }
-                />
+                <Route path="/street-arts" element={<StreetArtsList />} />
                 <Route
                   path="/street-arts-pending"
+                  element={<PendingStreetArtList />}
+                />
+                <Route
+                  path="/street-arts/:id/:longitude/:latitude"
+                  element={<InfoAdminStreetArt />}
+                />
+                <Route
+                  path="/street-arts/artists/:id"
                   element={
-                    <GameBoyScreen>
-                      <PendingStreetArtList />
-                    </GameBoyScreen>
+                    <>
+                      <Artist />
+                      <button
+                        type="button"
+                        className="retoure"
+                        onClick={() => nav("/street-arts")}
+                      >
+                        retoure a la list
+                      </button>
+                    </>
                   }
                 />
               </>
             )}
           </>
         )}
-        <Route path="*" element={<Home />} />
+        <Route path="*" element={<Autre />} />
       </Routes>
     </div>
   );

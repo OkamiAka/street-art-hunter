@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 function Login() {
-  const { setToken, setRole, gameBoyColor, setNumberX, setNumberY } = useAuth();
+  const { setToken, setRole } = useAuth();
   const usernameRef = useRef();
   const passwordRef = useRef();
   const navigate = useNavigate();
@@ -36,9 +36,7 @@ function Login() {
               sessionStorage.setItem("role", data.role);
               sessionStorage.setItem("token", data.token);
               setIsError(false);
-              setNumberX(1);
-              setNumberY(1);
-              navigate("/menu");
+              navigate("/camera");
             } else {
               setIsError(true);
             }
@@ -62,17 +60,7 @@ function Login() {
         />{" "}
       </div>{" "}
       {isError && <p className="error-message">Mauvais identifiants</p>}
-      <button
-        type="submit"
-        className="submit-login"
-        style={
-          Number.isNaN(gameBoyColor)
-            ? { backgroundColor: `hsl(93, 5%, 70%)` }
-            : { backgroundColor: `hsl(${gameBoyColor}, 20%, 50%)` }
-        }
-      >
-        Jouer
-      </button>{" "}
+      <button type="submit">Jouer</button>{" "}
     </form>
   );
 }
