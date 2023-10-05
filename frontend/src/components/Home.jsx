@@ -11,7 +11,7 @@ export default function Home() {
       <button type="button" onClick={() => navigate("/connection")}>
         Connection
       </button>
-      <button type="button">Inscription</button>
+      {/* <button type="button">Inscription</button> */}
     </div>
   );
 }

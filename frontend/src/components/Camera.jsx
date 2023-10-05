@@ -133,11 +133,12 @@ function Camera() {
               screenshotFormat="image/webp"
               videoConstraints={{ facingMode: videoConstraint }}
             />
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Red_round_button.svg/1200px-Red_round_button.svg.png"
-              alt=""
-              // onClick={capture}
-            />
+            <button type="button" className="noneButton" onClick={capture}>
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Red_round_button.svg/1200px-Red_round_button.svg.png"
+                alt=""
+              />
+            </button>
           </div>
         )}
       </div>

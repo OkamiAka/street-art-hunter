@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import MapStreetArt from "./MapStreetArt";
 
 export default function InfoAdminStreetArt() {
+  const nav = useNavigate();
   const { token } = useAuth();
   const [streetArt, setStreetArt] = useState([]);
   const { id } = useParams();
@@ -22,7 +23,6 @@ export default function InfoAdminStreetArt() {
       .then((res) => res.json())
       .then((data) => {
         setStreetArt(data);
-        console.info(data);
       });
   }, []);
   return (
@@ -35,7 +35,7 @@ export default function InfoAdminStreetArt() {
           alt=""
           className="img-info-street-art"
         />
-        <figcaption className="description-street-art">
+        <figcaption>
           {streetArt.name && <p>{streetArt.name}</p>}
           {streetArt.creation_date}
           <p>Score : {streetArt.score} point</p>
@@ -50,14 +50,19 @@ export default function InfoAdminStreetArt() {
               </Link>
             </p>
           )}
-          <p>Géolocalisation :</p>
+          {/* <p>Géolocalisation :</p> */}
         </figcaption>
         <section className="map-container">
           <MapStreetArt className="map-street-art" />
         </section>
       </figure>
+      <button
+        type="button"
+        className="retoure"
+        onClick={() => nav("/street-arts")}
+      >
+        retoure a la list
+      </button>
     </div>
   );
 }
-
-/*  */

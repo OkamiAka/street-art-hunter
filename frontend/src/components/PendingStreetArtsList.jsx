@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 export default function PendingStreetArtList() {
+  const nav = useNavigate();
   const [streetArts, setStreetArts] = useState([]);
   const { token } = useAuth();
 
@@ -65,9 +66,10 @@ export default function PendingStreetArtList() {
   };
 
   return (
-    <>
-      <Link to="/street-arts">Allez aux street arts de référence</Link>
-      <div className="gallery">
+    <div className="gallery">
+      {/* <Link to="/street-arts">Allez aux street arts de référence</Link> */}
+      <h1>Validation</h1>
+      <section>
         {streetArts.map((streetArt) => (
           <figure key={streetArt.id}>
             <Link
@@ -90,7 +92,10 @@ export default function PendingStreetArtList() {
             </form>
           </figure>
         ))}
-      </div>
-    </>
+      </section>
+      <button type="button" className="retoure" onClick={() => nav("/menu")}>
+        retoure a la menu
+      </button>
+    </div>
   );
 }
